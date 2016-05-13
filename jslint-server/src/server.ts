@@ -451,14 +451,15 @@ class Linter {
 		try {
 			output = JSLINT.data();
 		} catch (err) {
-			this.connection.window.showErrorMessage('JSLint library does not export a data() method.  The JSLint verions you are using is probably out of date.');
+			this.connection.window.showErrorMessage(
+				'JSLint library does not export a data() method.  The JSLint verion you are using is probably out of date.');
 		}
 		const errors = output.warnings.map(function (warning, i) {
 			return {
 				code: warning.code,
 				id: i,
-				line: warning.line,
-				character: warning.column,
+				line: warning.line + 1,
+				character: warning.column + 1,
 				reason: warning.message,
 			};
 		});

@@ -1,80 +1,79 @@
 {
-	"name": "jslint",
-	"description": "Integrates JSLint into VS Code.",
-	"version": "0.10.12",
-	"author": "Microsoft Corporation",
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/ajhyndman/vscode-jslint.git"
-	},
-	"bugs": {
-		"url": "https://github.com/ajhyndman/vscode-jslint/issues"
-	},
-	"icon": "jslint_icon.png",
-	"galleryBanner": {
-		"color": "#5c2d91",
-		"theme": "dark"
-	},
-	"categories": [
-		"Linters"
-	],
-	"publisher": "ajhyndman",
-	"engines": {
-		"vscode": "^0.10.1"
-	},
-	"activationEvents": [
-		"onLanguage:javascript"
-	],
-	"main": "./out/extension",
-	"contributes": {
-		"configuration": {
-			"type": "object",
-			"title": "JSLint configuration",
-			"properties": {
-				"jslint.enable": {
-					"type": "boolean",
-					"default": true,
-					"description": "Control whether or not jslint is enabled for JavaScript files."
-				},
-				"jslint.version": {
-					"type": "string",
-					"default": "latest",
-					"description": "Select the one of node-jslint's installed versions that you want to use."
-				},
-				"jslint.config" : {
-					"type": "string",
-					"default": null,
-					"description": "A path to file containing the configuration options for jslint. If the file exists it overrides jslint.options and any .jslintrc file"
-				},
-				"jslint.options": {
-					"type": "object",
-					"default": {},
-					"description": "The jslint options object to provide args to the jslint command."
-				},
-				"jslint.excludePath": {
-					"type": "string",
-					"default": null,
-					"description": "A path to a file containing patterns describing which files and directories should be ignored by jslint. If the file exists it overrides jslint.exclude and any .jslintignore file."
-				},
-				"jslint.exclude": {
-					"type": "object",
-					"default": {},
-					"description": "Matching files and directories are being ignored by jslint. Glob patterns are interpreted relative to the workspace's root folder."
-				}
-			}
-		}
-	},
-	"scripts": {
-		"vscode:prepublish": "cd ../jslint-server && npm run compile && cd ../jslint && tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"compile": "tsc -p ./"
-	},
-	"devDependencies": {
-		"vscode": "0.10.x",
-		"typescript": "^1.6.2"
-	},
-	"dependencies": {
-		"vscode-languageclient": "^1.0.2"
-	}
+    "name": "jslint",
+    "description": "Integrates JSLint into VS Code.",
+    "version": "1.1.0",
+    "author": "Microsoft Corporation",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ajhyndman/vscode-jslint.git"
+    },
+    "bugs": {
+        "url": "https://github.com/ajhyndman/vscode-jslint/issues"
+    },
+    "icon": "jslint_icon.png",
+    "galleryBanner": {
+        "color": "#5c2d91",
+        "theme": "dark"
+    },
+    "categories": [
+        "Linters"
+    ],
+    "publisher": "ajhyndman",
+    "engines": {
+        "vscode": "^0.10.1"
+    },
+    "activationEvents": [
+        "onLanguage:javascript"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "JSLint configuration",
+            "properties": {
+                "jslint.enable": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Control whether or not jslint is enabled for JavaScript files."
+                },
+                "jslint.version": {
+                    "type": "string",
+                    "default": "latest",
+                    "description": "Select the one of node-jslint's installed versions that you want to use."
+                },
+                "jslint.config": {
+                    "type": "string",
+                    "default": null,
+                    "description": "A path to file containing the configuration options for jslint. If the file exists it overrides jslint.options and any .jslintrc file"
+                },
+                "jslint.options": {
+                    "type": "object",
+                    "default": {},
+                    "description": "The jslint options object to provide args to the jslint command."
+                },
+                "jslint.excludePath": {
+                    "type": "string",
+                    "default": null,
+                    "description": "A path to a file containing patterns describing which files and directories should be ignored by jslint. If the file exists it overrides jslint.exclude and any .jslintignore file."
+                },
+                "jslint.exclude": {
+                    "type": "object",
+                    "default": {},
+                    "description": "Matching files and directories are being ignored by jslint. Glob patterns are interpreted relative to the workspace's root folder."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "watch": "tsc -watch -p ./",
+        "compile": "tsc -p ./"
+    },
+    "devDependencies": {
+        "vscode": "0.10.x",
+        "typescript": "^1.6.2"
+    },
+    "dependencies": {
+        "vscode-languageclient": "^1.0.2"
+    }
 }

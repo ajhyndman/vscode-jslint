@@ -21,7 +21,7 @@ export function activate(context: ExtensionContext) {
 		documentSelector: ['javascript', 'javascriptreact'],
 		synchronize: {
 			configurationSection: 'jslint',
-			fileEvents: workspace.createFileSystemWatcher('**/.jslint{rc,ignore}')
+			fileEvents: workspace.createFileSystemWatcher('**/jslint.conf')
 		}
 	}
 

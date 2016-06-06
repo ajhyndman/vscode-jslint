@@ -88,7 +88,7 @@ function makeDiagnostic(problem: JSLintError): Diagnostic {
 	return {
 		message: problem.reason + (problem.code ? ` (${problem.code})` : ''),
 		severity: getSeverity(problem),
-		source: 'jsLint',
+		source: 'jslint',
 		code: problem.code,
 		range: {
 			start: { line: problem.line - 1, character: problem.character - 1 },
@@ -409,7 +409,7 @@ class Linter {
 		return Files.resolveModule(this.workspaceRoot, 'jslint').then((value) => {
 			console.log(value);
 			if (!value.load) {
-				return new ResponseError(99, 'The jslint library doesn\'t export a load property.', { retry: false });
+				return new ResponseError(99, 'The JSLint library doesn\'t export a load property.', { retry: false });
 			}
 			this.lib = value;
 			let result: InitializeResult = { capabilities: { textDocumentSync: this.documents.syncKind } };
@@ -417,7 +417,7 @@ class Linter {
 		}, (error) => {
 			return Promise.reject(
 				new ResponseError<InitializeError>(99,
-					'Failed to load jslint library. Please install jslint in your workspace folder using \'npm install jslint\' or globally using \'npm install -g jslint\' and then press Retry.',
+					'Failed to load JSLint library. Please install JSLint in your workspace folder using \'npm install jslint\' or globally using \'npm install -g jslint\' and then press Retry.',
 					{ retry: true }));
 		});
 	}
@@ -452,7 +452,7 @@ class Linter {
 			output = JSLINT.data();
 		} catch (err) {
 			this.connection.window.showErrorMessage(
-				'JSLint library does not export a data() method.  The JSLint verion you are using is probably out of date.');
+				'JSLint library does not export a data() method.  The JSLint version you are using is probably out of date.');
 		}
 		const errors = output.warnings.map(function (warning, i) {
 			return {

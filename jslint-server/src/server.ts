@@ -444,7 +444,7 @@ class Linter {
 
 
 	private lintContent(content: string, fsPath: string): JSLintError[] {
-		const JSLINT: JSLINT = this.lib.load('es6');
+		const JSLINT: JSLINT = this.lib.load(this.options.getVersion() || 'latest');
 		const options = this.options.getOptions(fsPath) || {};
 		JSLINT(content, options, options.globals || {});
 		let output;

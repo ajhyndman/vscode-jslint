@@ -444,7 +444,7 @@ class Linter {
 
 
 	private lintContent(content: string, fsPath: string): JSLintError[] {
-		const JSLINT: JSLINT = this.lib.load('es6');
+		const JSLINT: JSLINT = this.lib.load(this.options.getVersion() || 'latest');
 		const options = this.options.getOptions(fsPath) || {};
 		JSLINT(content, options, options.globals || {});
 		let output;
@@ -454,16 +454,18 @@ class Linter {
 			this.connection.window.showErrorMessage(
 				'JSLint library does not export a data() method.  The JSLint version you are using is probably out of date.');
 		}
-		const errors = output.warnings.map(function (warning, i) {
+		const isLegacy = Array.isArray(output.errors);
+		const fudge = isLegacy ? 0 : 1; // old jslint versions use 1-based lines/columns, modern versions use 0-based
+		const warnings = isLegacy ? output.errors : output.warnings;
+		return warnings.map(function (warning, i) {
 			return {
 				code: warning.code,
 				id: i,
-				line: warning.line + 1,
-				character: warning.column + 1,
-				reason: warning.message,
+				line: warning.line + fudge,
+				character: (isLegacy ? warning.character : warning.column) + fudge,
+				reason: (isLegacy ? warning.reason : warning.message)
 			};
 		});
-		return errors;
 	}
 
 

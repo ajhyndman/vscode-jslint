@@ -456,7 +456,7 @@ class Linter {
 		}
 		const isLegacy = Array.isArray(output.errors);
 		const fudge = isLegacy ? 0 : 1; // old jslint versions use 1-based lines/columns, modern versions use 0-based
-		const warnings = isLegacy ? output.errors : output.warnings;
+		const warnings = isLegacy ? output.errors.filter(Boolean) : output.warnings;
 		return warnings.map(function (warning, i) {
 			return {
 				code: warning.code,

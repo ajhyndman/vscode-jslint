@@ -1,7 +1,7 @@
 {
     "name": "jslint",
     "description": "Integrates JSLint into VS Code.",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "author": "Microsoft Corporation",
     "license": "MIT",
     "repository": {
